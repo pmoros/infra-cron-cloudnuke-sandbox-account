@@ -31,4 +31,4 @@ jobs:
         run: chmod +x ${{ env.PATH_TO_BINARY }}  # Make the binary executable
 
       - name: Run Cloud Nuke
-        run: ./${{ env.PATH_TO_BINARY }} aws --force  # Use the environment variable for the path
+        run: ${{ env.PATH_TO_BINARY }} aws --force  # Use the environment variable for the path
