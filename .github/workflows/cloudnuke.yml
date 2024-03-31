@@ -2,7 +2,7 @@ name: Cloud Nuke
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Trigger every 5 minutes
+    - cron: '*/1 * * * *'  # Trigger every 5 minutes
 
 jobs:
   cloud-nuke:
@@ -17,7 +17,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-region: us-east-1
-          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
 
       - name: Run Cloud Nuke
         run: ./bin/cloud-nuke_linux_amd64 aws --force
