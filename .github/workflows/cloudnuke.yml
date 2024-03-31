@@ -14,6 +14,9 @@ jobs:
     name: Run Cloud Nuke
     runs-on: ubuntu-latest
 
+    env:
+      PATH_TO_BINARY: 'bin/cloud-nuke_linux_amd64'  # Define the path to the binary
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -24,5 +27,8 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
 
+      - name: Make Binary Executable
+        run: chmod +x ${{ env.PATH_TO_BINARY }}  # Make the binary executable
+
       - name: Run Cloud Nuke
-        run: ./bin/cloud-nuke_linux_amd64 aws --force
+        run: ./${{ env.PATH_TO_BINARY }} aws --force  # Use the environment variable for the path
