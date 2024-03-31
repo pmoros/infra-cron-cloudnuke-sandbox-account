@@ -1,8 +1,6 @@
 name: Cloud Nuke
 
 on:
-  schedule:
-    - cron: '*/1 * * * *'  # Trigger every 5 minutes
   workflow_dispatch:
 
 jobs:
