@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  TriggerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: cron-cloud-nuke-sandbox-account
+      PackageType: Image
+      Architectures:
+      - x86_64
+      Events:
+        Schedule:
+          Type: Rate
+          Properties:
+            Enabled: true
+            ScheduleExpression: "cron(0 19 ? * *)"  # Every day at 7 PM UTC (19:00)
+      Role: $CRON_ROLE
+    Metadata:
+      DockerTag: pmoros-cloud-nuke-v0.1
+      DockerContext: .
+      Dockerfile: Dockerfile
