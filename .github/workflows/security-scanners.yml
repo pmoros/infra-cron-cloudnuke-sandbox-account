@@ -1,0 +1,30 @@
+name: Security Scanning
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Run GitLeaks for secret scanning
+      - name: Run GitLeaks scan
+        uses: gitleaks/gitleaks-action@v16  # Official GitLeaks action        
+
+      # Run Trivy for vulnerability scanning
+      - name: Run Trivy scan
+        uses: aquasecurity/trivy-action@v1.7  # Official Trivy action
+        with:                    
+          scan-types: fs          
+          fail-on-vuln: true
+
+      # Upload scan results
+      - name: Upload SARIF scan results (for Security tab)
+        uses: actions/upload-artifact@v3
+        with:
+          name: gitLeaks_results
+          path: gitLeaks_*.json  # Replace with your GitLeaks output file pattern
+
