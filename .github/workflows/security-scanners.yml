@@ -12,11 +12,11 @@ jobs:
 
       # Run GitLeaks for secret scanning
       - name: Run GitLeaks scan
-        uses: gitleaks/gitleaks-action@v16  # Official GitLeaks action        
+        uses: gitleaks/gitleaks-action@v2  # Official GitLeaks action        
 
       # Run Trivy for vulnerability scanning
       - name: Run Trivy scan
-        uses: aquasecurity/trivy-action@v1.7  # Official Trivy action
+        uses: aquasecurity/trivy-action@master # Official Trivy action
         with:                    
           scan-types: fs          
           fail-on-vuln: true
