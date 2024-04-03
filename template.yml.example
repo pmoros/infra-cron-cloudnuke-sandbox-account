@@ -10,7 +10,7 @@ Resources:
       - x86_64
       Events:
         Schedule:
-          Type: Event
+          Type: Schedule
           Properties:
             Enabled: true
             ScheduleExpression: "cron(0 19 ? * *)"  # Every day at 7 PM UTC (19:00)
