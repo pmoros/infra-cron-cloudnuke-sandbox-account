@@ -9,7 +9,7 @@ Resources:
       Architectures:
       - x86_64
       Events:
-        Schedule:
+        CronInvokeOnSchedule:
           Type: Schedule
           Properties:
             Enabled: true
