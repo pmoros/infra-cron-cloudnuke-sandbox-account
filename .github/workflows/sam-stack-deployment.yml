@@ -33,7 +33,7 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}  # Use secrets manager for role ARN
 
       - name: Install AWS CLI (Optional)
-        uses: aws-actions/aws-cli@v2
+        uses: aws-actions/aws-cli-action@v2
         with:
           aws-version: '2.28.0'  # Adjust version as needed
 
