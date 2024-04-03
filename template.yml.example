@@ -8,7 +8,6 @@ Resources:
       PackageType: Image
       Architectures:
       - x86_64
-      Runtime: provided
       Events:
         ScheduledEvent:
           Name: DailyAt7PMUTC
