@@ -1,0 +1,44 @@
+name: Cloud Nuke Cron Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  CRON_ROLE: ${{ secrets.CRON_ROLE_ARN_SANDBOX }}  # Set environment variable with secret value
+
+jobs:
+  cloud-nuke:
+    name: Build and Deploy CloudFormation Stack
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Substitute Variables in Template
+        run: |
+          envsubst < template.yml.example > template.yml
+
+      - name: Configure AWS Credentials (Optional)
+        # Consider using a dedicated secrets manager for sensitive credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: ${{ vars.AWS_REGION }}  # Use secrets manager for region
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}  # Use secrets manager for role ARN
+
+      - name: Install AWS CLI (Optional)
+        uses: aws-actions/aws-cli@v2
+        with:
+          aws-version: '2.28.0'  # Adjust version as needed
+
+      - name: Build CloudFormation Package (Modify for your build process)
+        run: sam build
+
+      - name: Deploy CloudFormation Stack
+        run: sam deploy
