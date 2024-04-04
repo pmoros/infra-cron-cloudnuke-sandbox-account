@@ -22,7 +22,8 @@ jobs:
 
       - name: Substitute Variables in Template
         run: |
-          envsubst < template.yml.example > template.yml          
+          envsubst < template.yml.example > template.yml
+          cat template.yml          
 
       - name: Configure AWS Credentials (Optional)
         # Consider using a dedicated secrets manager for sensitive credentials
