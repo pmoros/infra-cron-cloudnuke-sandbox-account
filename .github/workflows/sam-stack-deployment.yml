@@ -20,12 +20,12 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+        with:
+          lfs: true
 
       - name: Substitute Variables in Template
         run: |
           envsubst < template.yml.example > template.yml
-          echo "output binary file"
-          cat bin/cloud-nuke_linux_amd64
 
       - name: Configure AWS Credentials (Optional)
         # Consider using a dedicated secrets manager for sensitive credentials
