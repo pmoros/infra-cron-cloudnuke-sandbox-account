@@ -10,8 +10,8 @@ permissions:
   contents: read
 
 env:
-  CRON_ROLE: ${{ secrets.CRON_ROLE_ARN_SANDBOX }}  # Set environment variable with secret value
-
+  AWS_ACCESS_KEY_ID_SANDBOX: ${{ secrets.AWS_ACCESS_KEY_ID_SANDBOX }}
+  AWS_SECRET_ACCESS_KEY_SANDBOX: ${{ secrets.AWS_SECRET_ACCESS_KEY_SANDBOX }}
 jobs:
   cloud-nuke:
     name: Build and Deploy CloudFormation Stack
@@ -25,7 +25,8 @@ jobs:
 
       - name: Substitute Variables in Template
         run: |
-          envsubst < template.yml.example > template.yml
+          envsubst < Dockerfile.example > Dockerfile
+          envsubst < template.yml.example > template.yml          
 
       - name: Configure AWS Credentials (Optional)
         # Consider using a dedicated secrets manager for sensitive credentials
