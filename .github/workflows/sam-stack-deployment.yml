@@ -9,6 +9,8 @@ permissions:
   id-token: write
   contents: read
 
+env:
+  AWS_ROLE_ARN_SANDBOX: ${{ secrets.AWS_ROLE_ARN_SANDBOX }}
 jobs:
   cloud-nuke:
     name: Build and Deploy CloudFormation Stack
