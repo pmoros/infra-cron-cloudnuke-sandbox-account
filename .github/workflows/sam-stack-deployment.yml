@@ -9,9 +9,6 @@ permissions:
   id-token: write
   contents: read
 
-env:
-  AWS_ACCESS_KEY_ID_SANDBOX: ${{ secrets.AWS_ACCESS_KEY_ID_SANDBOX }}
-  AWS_SECRET_ACCESS_KEY_SANDBOX: ${{ secrets.AWS_SECRET_ACCESS_KEY_SANDBOX }}
 jobs:
   cloud-nuke:
     name: Build and Deploy CloudFormation Stack
@@ -25,7 +22,6 @@ jobs:
 
       - name: Substitute Variables in Template
         run: |
-          envsubst < Dockerfile.example > Dockerfile
           envsubst < template.yml.example > template.yml          
 
       - name: Configure AWS Credentials (Optional)
