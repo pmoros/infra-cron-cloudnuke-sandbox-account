@@ -6,6 +6,7 @@ Resources:
     Properties:
       FunctionName: cron-cloud-nuke-sandbox-account
       PackageType: Image
+      Timeout: 300
       Architectures:
       - x86_64
       Events:
