@@ -12,5 +12,4 @@ RUN chmod +x cloud-nuke
 
 # Run the binary with like cloud-nuke --help
 # ENTRYPOINT [ "/app/cloud-nuke", "aws", "--region", "us-east-1", "--region", "us-east-2", "--region", "us-west-1", "--region", "us-west-2", "--dry-run"]
-CMD [ "printenv" ]
-ENTRYPOINT [ "sleep", "5m" ]
+CMD ["printenv", "&&" "sleep", "5m" ]
