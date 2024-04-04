@@ -14,8 +14,7 @@ Resources:
           Name: DailyAt7PMUTC
           Type: Schedule
           Properties:
-            Schedule: cron(0 19 * * ? *)
-      Role: $CRON_ROLE
+            Schedule: cron(0 19 * * ? *)      
     Metadata:
       DockerTag: pmoros-cloud-nuke-v0.1
       DockerContext: .
