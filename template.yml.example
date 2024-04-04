@@ -15,7 +15,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: cron(0 19 * * ? *)
-      Role: $AWS_ROLE_ARN
+      Role: $AWS_ROLE_ARN_SANDBOX
     Metadata:
       DockerTag: pmoros-cloud-nuke-v0.1
       DockerContext: .
