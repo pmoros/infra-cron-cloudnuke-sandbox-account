@@ -1,6 +1,7 @@
 FROM ubuntu:22.04
 
 ENV DISABLE_TELEMETRY=true
+ENV AWS_REGION=us-east-1
 
 WORKDIR /app
 # Install the binary
