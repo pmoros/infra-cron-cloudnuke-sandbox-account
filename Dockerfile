@@ -1,7 +1,6 @@
-FROM ubuntu:22.04
+FROM amazon/aws-cli:2.13.2
 
 ENV DISABLE_TELEMETRY=true
-ENV AWS_REGION=us-east-1
 
 WORKDIR /app
 # Install the binary
@@ -11,5 +10,4 @@ COPY bin/cloud-nuke_linux_amd64 cloud-nuke
 RUN chmod +x cloud-nuke
 
 # Run the binary with like cloud-nuke --help
-# ENTRYPOINT [ "/app/cloud-nuke", "aws", "--region", "us-east-1", "--region", "us-east-2", "--region", "us-west-1", "--region", "us-west-2", "--dry-run"]
-CMD ["printenv", "&&" "sleep", "5m" ]
+ENTRYPOINT [ "/app/cloud-nuke", "aws", "--region", "us-east-1", "--region", "us-east-2", "--region", "us-west-1", "--region", "us-west-2", "--dry-run"]
