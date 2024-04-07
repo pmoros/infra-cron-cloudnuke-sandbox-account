@@ -7,10 +7,12 @@ WORKDIR /app
 
 # Install the binary
 COPY bin/cloud-nuke_linux_amd64 cloud-nuke
+# Add deployment script
+COPY deploy/cloud-nuke.sh cloud-nuke.sh
 
 # Set the binary as executable
 RUN chmod +x cloud-nuke
 RUN chmod +x deploy/cloud-nuke.sh
 
 # Run the binary with like cloud-nuke --help
-ENTRYPOINT [ "bash", "deploy/cloud-nuke.sh"]
+ENTRYPOINT [ "bash", "cloud-nuke.sh"]

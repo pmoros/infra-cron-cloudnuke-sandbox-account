@@ -11,6 +11,7 @@ permissions:
 
 env:
   AWS_ROLE_ARN_SANDBOX: ${{ secrets.AWS_ROLE_ARN_SANDBOX }}
+  AWS_ROLE_ARN_SANDBOX_TARGET: ${{ secrets.AWS_ROLE_ARN_SANDBOX_TARGET }}
 jobs:
   cloud-nuke:
     name: Build and Deploy CloudFormation Stack
