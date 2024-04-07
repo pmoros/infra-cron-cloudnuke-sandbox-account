@@ -11,5 +11,4 @@ COPY bin/cloud-nuke_linux_amd64 cloud-nuke
 RUN chmod +x cloud-nuke
 
 # Run the binary with like cloud-nuke --help
-ENTRYPOINT [ "printenv" ]
-#ENTRYPOINT [ "/app/cloud-nuke", "aws", "--region", "us-east-1", "--region", "us-east-2", "--region", "us-west-1", "--region", "us-west-2", "--dry-run"]
+ENTRYPOINT [ "/app/cloud-nuke", "aws", "--region", "us-east-1", "--region", "us-east-2", "--region", "us-west-1", "--region", "us-west-2", "--dry-run"]
