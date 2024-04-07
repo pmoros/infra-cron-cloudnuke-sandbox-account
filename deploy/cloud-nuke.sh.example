@@ -9,7 +9,7 @@ export AWS_SECRET_ACCESS_KEY=$(jq -r .Credentials.SecretAccessKey /tmp/assumed-r
 export AWS_SESSION_TOKEN=$(jq -r .Credentials.SessionToken /tmp/assumed-role-output.json)
 
 # Execute cloud-nuke with the assumed role credentials
-cloud-nuke aws --region us-east-1 --region us-east-2 --region us-west-1 --region us-west-2 --dry-run
+/app/cloud-nuke aws --region us-east-1 --region us-east-2 --region us-west-1 --region us-west-2 --dry-run
 
 # Clean up temporary assumed-role output file
 rm /tmp/assumed-role-output.json
