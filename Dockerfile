@@ -1,6 +1,7 @@
 FROM amazon/aws-cli:2.13.2
 
 ENV DISABLE_TELEMETRY=true
+ENV AWS_DEFAULT_REGION=us-east-1
 
 WORKDIR /app
 # Install the binary
