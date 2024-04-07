@@ -4,11 +4,13 @@ ENV DISABLE_TELEMETRY=true
 ENV AWS_DEFAULT_REGION=us-east-1
 
 WORKDIR /app
+
 # Install the binary
 COPY bin/cloud-nuke_linux_amd64 cloud-nuke
 
 # Set the binary as executable
 RUN chmod +x cloud-nuke
+RUN chmod +x deploy/cloud-nuke.sh
 
 # Run the binary with like cloud-nuke --help
-ENTRYPOINT [ "/app/cloud-nuke", "aws", "--region", "us-east-1", "--region", "us-east-2", "--region", "us-west-1", "--region", "us-west-2", "--dry-run"]
+ENTRYPOINT [ "bash", "deploy/cloud-nuke.sh"]
