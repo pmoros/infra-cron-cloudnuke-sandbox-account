@@ -12,19 +12,19 @@ jobs:
 
       # Run GitLeaks for secret scanning
       - name: Run GitLeaks scan
-        uses: gitleaks/gitleaks-action@v2  # Official GitLeaks action        
+        uses: gitleaks/gitleaks-action@v2 # Official GitLeaks action
 
       # Run Trivy for vulnerability scanning
       - name: Run Trivy scan
         uses: aquasecurity/trivy-action@master # Official Trivy action
-        with:                    
-          scan-types: fs          
-          fail-on-vuln: true
-
-      # Upload scan results
-      - name: Upload SARIF scan results (for Security tab)
-        uses: actions/upload-artifact@v3
         with:
-          name: gitLeaks_results
-          path: gitLeaks_*.json  # Replace with your GitLeaks output file pattern
+          scan-type: "fs"
+          ignore-unfixed: true
+          format: "sarif"
+          output: "trivy-results.sarif"
+          severity: "CRITICAL"
 
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: "trivy-results.sarif"
