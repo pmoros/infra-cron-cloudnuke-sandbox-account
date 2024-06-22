@@ -10,12 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Run GitLeaks for secret scanning
-      - name: Run GitLeaks scan
-        uses: gitleaks/gitleaks-action@v2 # Official GitLeaks action
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       # Run Trivy for vulnerability scanning
       - name: Run Trivy scan
         uses: aquasecurity/trivy-action@master # Official Trivy action
