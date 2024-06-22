@@ -13,6 +13,8 @@ jobs:
       # Run GitLeaks for secret scanning
       - name: Run GitLeaks scan
         uses: gitleaks/gitleaks-action@v2 # Official GitLeaks action
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Run Trivy for vulnerability scanning
       - name: Run Trivy scan
@@ -20,11 +22,4 @@ jobs:
         with:
           scan-type: "fs"
           ignore-unfixed: true
-          format: "sarif"
-          output: "trivy-results.sarif"
           severity: "CRITICAL"
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: "trivy-results.sarif"
