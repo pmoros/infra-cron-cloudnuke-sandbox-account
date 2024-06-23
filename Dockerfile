@@ -7,6 +7,8 @@ WORKDIR /app
 
 # Install the binary
 COPY bin/cloud-nuke_linux_amd64 cloud-nuke
+
+RUN yum install jq -y
 # Add deployment script
 COPY deploy/cloud-nuke.sh cloud-nuke.sh
 
