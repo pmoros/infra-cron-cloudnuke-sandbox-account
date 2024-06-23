@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 env:
-  AWS_ROLE_ARN_SANDBOX: ${{ secrets.AWS_ROLE_ARN_SANDBOX }}
+  AWS_ROLE_ARN_MANAGEMENT_ACCOUNT: ${{ secrets.AWS_ROLE_ARN_MANAGEMENT_ACCOUNT }}
   AWS_ROLE_ARN_SANDBOX_TARGET: ${{ secrets.AWS_ROLE_ARN_SANDBOX_TARGET }}
 jobs:
   cloud-nuke:
@@ -26,14 +26,14 @@ jobs:
       - name: Substitute Variables in Template
         run: |
           envsubst < template.yml.example > template.yml
-          envsubst < deploy/cloud-nuke.sh.example > deploy/cloud-nuke.sh          
+          envsubst < deploy/cloud-nuke.sh.example > deploy/cloud-nuke.sh
 
       - name: Configure AWS Credentials (Optional)
         # Consider using a dedicated secrets manager for sensitive credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-region: ${{ vars.AWS_REGION }}  # Use secrets manager for region
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}  # Use secrets manager for role ARN
+          aws-region: ${{ vars.AWS_REGION }} # Use secrets manager for region
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }} # Use secrets manager for role ARN
 
       - name: Build CloudFormation Package (Modify for your build process)
         run: sam build
