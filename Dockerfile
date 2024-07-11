@@ -1,4 +1,7 @@
-FROM amazon/aws-cli:2.13.2
+FROM public.ecr.aws/lambda/provided:al2
+
+RUN yum install aws-cli -y
+RUN yum install jq -y
 
 ENV DISABLE_TELEMETRY=true
 ENV AWS_DEFAULT_REGION=us-east-1
@@ -8,7 +11,6 @@ WORKDIR /app
 # Install the binary
 COPY bin/cloud-nuke_linux_amd64 cloud-nuke
 
-RUN yum install jq -y
 # Add deployment script
 COPY deploy/cloud-nuke.sh cloud-nuke.sh
 
